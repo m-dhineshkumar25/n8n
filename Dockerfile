@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-# Install Yarn
-RUN npm install -g yarn
+# Skip this (Yarn already present):
+# RUN npm install -g yarn
 
 # Use Yarn to install workspace packages
 RUN yarn install
