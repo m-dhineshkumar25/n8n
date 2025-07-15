@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "yourdockerhubusername/n8n"
+        IMAGE_NAME = "dhineshkumar375/n8n"
     }
 
     stages {
         stage('Clone Code') {
             steps {
                 echo 'Cloning source code...'
-                git url: 'https://github.com/YOUR_USERNAME/n8n.git', branch: 'main'
+                git url: 'https://github.com/m-dhineshkumar25/n8n.git', branch: 'main'
             }
         }
 
