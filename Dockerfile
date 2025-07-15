@@ -4,12 +4,12 @@ WORKDIR /app
 
 COPY . .
 
-# Enable Corepack and install correct Yarn version (as defined in package.json)
-RUN corepack enable && corepack prepare yarn@stable --activate
+# Enable corepack and activate the correct version of pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# Install dependencies using Yarn Berry
-RUN yarn install
+# Install dependencies using pnpm
+RUN pnpm install
 
 EXPOSE 5678
 
-CMD ["yarn", "start"]
+CMD ["pnpm", "start"]
