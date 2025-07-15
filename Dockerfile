@@ -4,10 +4,10 @@ WORKDIR /app
 
 COPY . .
 
-# Skip this (Yarn already present):
-# RUN npm install -g yarn
+# Enable Corepack and install correct Yarn version (as defined in package.json)
+RUN corepack enable && corepack prepare yarn@stable --activate
 
-# Use Yarn to install workspace packages
+# Install dependencies using Yarn Berry
 RUN yarn install
 
 EXPOSE 5678
