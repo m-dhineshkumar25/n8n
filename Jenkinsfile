@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "dhineshkumar375/n8n:latest"
-        DEPLOYMENT_FOLDER = "devops-k8s\\n8n"
+        DEPLOYMENT_FOLDER = "devops-k8s/n8n"
         KUBECONFIG = 'C:\\ProgramData\\Jenkins\\.kube\\config'
     }
 
@@ -23,18 +23,17 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                bat "kubectl apply -f %DEPLOYMENT_FOLDER%\\deployment.yaml"
-                bat "kubectl apply -f %DEPLOYMENT_FOLDER%\\service.yaml"
+                bat "kubectl apply -f %DEPLOYMENT_FOLDER%/deployment.yaml"
             }
         }
     }
 
     post {
-        always {
-            echo 'Pipeline completed.'
+        success {
+            echo '✅ Pipeline completed successfully!'
         }
         failure {
-            echo 'Pipeline failed.'
+            echo '❌ Pipeline failed. Check logs for details.'
         }
     }
 }
