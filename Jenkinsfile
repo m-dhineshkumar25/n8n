@@ -4,6 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "dhineshkumar375/n8n:latest"
         DEPLOYMENT_FOLDER = "devops-k8s\\n8n"
+        KUBECONFIG = 'C:\\ProgramData\\Jenkins\\.kube\\config'  // 👈 Add this line
     }
 
     stages {
