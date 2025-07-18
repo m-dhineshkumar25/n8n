@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: app1
+  description: This is App 1
+  tags:
+    - nodejs
+    - microservice
+spec:
+  type: service
+  owner: dhinesh
+  lifecycle: production
