@@ -2,38 +2,35 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "dhineshkumar375/n8n-custom:latest"
-        DOCKERHUB_CREDENTIALS_ID = "dockerhub-creds"
+        IMAGE_NAME = "dhineshkumar375/n8n-custom:latest"
     }
 
     stages {
         stage('Clone Source') {
             steps {
-                echo "Cloning the repository..."
-                checkout scm
+                echo 'Cloning the n8n repository...'
+                // Already cloned by Jenkins when using SCM, so this is just a placeholder
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    echo "Building Docker image: ${DOCKER_IMAGE}"
-                    sh "docker build -t ${DOCKER_IMAGE} ."
+                    sh "docker build -t $IMAGE_NAME ."
                 }
             }
         }
 
         stage('Push to DockerHub') {
             steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS_ID}", passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-                        sh """
-                        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-                        docker push ${DOCKER_IMAGE}
-                        """
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    script {
+                        sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
+                        sh "docker push $IMAGE_NAME"
                     }
                 }
             }
         }
     }
 }
+
