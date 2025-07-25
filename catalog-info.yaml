@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: n8n
+  description: n8n workflow automation tool
+  tags:
+    - devops
+    - workflow
+spec:
+  type: service
+  lifecycle: production
+  owner: user:guest
