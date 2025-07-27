@@ -2,10 +2,13 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: n8n
-  description: n8n workflow automation tool
-  tags:
-    - devops
-    - workflow
+  description: Workflow automation tool
+  annotations:
+    jenkins.io/job-full-name: n8n-deploy
+    backstage.io/kubernetes-id: n8n
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/view-url: http://18.208.150.197:5678
+    backstage.io/managed-by-location: url:https://github.com/YOUR-ORG/n8n/blob/main/catalog-info.yaml
 spec:
   type: service
   lifecycle: production
